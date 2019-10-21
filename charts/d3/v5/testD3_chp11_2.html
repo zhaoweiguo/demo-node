@@ -4,11 +4,10 @@
     <title>testD3_chp11_2.html</title>
     
     <script type="text/javascript" src="http://d3js.org/d3.v5.min.js">
-	</script>
-	
+  </script>
+  
     <meta name="keywords" content="keyword1,keyword2,keyword3">
     <meta name="description" content="this is my page">
-    <meta name="content-type" content="text/html; charset=GBK">
     
     <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
 
@@ -17,82 +16,82 @@
   <body>
     <svg width="960" height="600"></svg>
     <script>
-    	var marge = {top:60,bottom:60,left:60,right:60}
-    	var svg = d3.select("svg");//得到SVG画布
-    	var width = svg.attr("width");//得到画布的宽
-    	var height = svg.attr("height");//得到画布的长
-    	var g = svg.append("g")
-    		.attr("transform","translate("+marge.top+","+marge.left+")");
-    	
-    	var dataset = [10,20,30,23,13,40,27,35,20];
+      var marge = {top:60,bottom:60,left:60,right:60}
+      var svg = d3.select("svg");//寰楀埌SVG鐢诲竷
+      var width = svg.attr("width");//寰楀埌鐢诲竷鐨勫
+      var height = svg.attr("height");//寰楀埌鐢诲竷鐨勯暱
+      var g = svg.append("g")
+        .attr("transform","translate("+marge.top+","+marge.left+")");
+      
+      var dataset = [10,20,30,23,13,40,27,35,20];
    
-    	var xScale = d3.scaleBand()
-    		.domain(d3.range(dataset.length))
-    		.rangeRound([0,width-marge.left-marge.right]);
-    	var xAxis = d3.axisBottom(xScale);
-    		
-    	var yScale = d3.scaleLinear()
-    		.domain([0,d3.max(dataset)])
-    		.range([height-marge.top-marge.bottom,0]);
-    	var yAxis = d3.axisLeft(yScale);
-    	
-    	g.append("g")
-    		.attr("transform","translate("+0+","+(height-marge.top-marge.bottom)+")")
-    		.call(xAxis);
-    	g.append("g")
-    		.attr("transform","translate(0,0)")
-    		.call(yAxis);
-    		
-    	//绘制矩形和文字
-    	var gs = g.selectAll(".rect")
-    		.data(dataset)
-    		.enter()
-    		.append("g");
-    	
-    	//绘制矩形
-    	var rectPadding = 20;//矩形之间的间隙
-    	gs.append("rect")
-    		.attr("x",function(d,i){
-    			return xScale(i)+rectPadding/2;
-    		})	
-    		.attr("y",function(d){
-    			return yScale(d);
-    		})
-    		.attr("width",function(){
-    			return xScale.step()-rectPadding;
-    		})
-    		.attr("height",function(d){
-    			return height-marge.top-marge.bottom-yScale(d);
-    		})
-    		.attr("fill","blue")
-    		.on("mouseover",function(){
-    			var rect = d3.select(this)
-    				.transition()
-    				.duration(1500)
-    				.attr("fill","yellow");
-    		})
-    		.on("mouseout",function(){
-    			var rect = d3.select(this)
-    				.transition()
-    				.delay(1500)
-    				.duration(1500)
-    				.attr("fill","blue");
-    		})
-    	//绘制文字
-    	gs.append("text")
-    		.attr("x",function(d,i){
-    			return xScale(i)+rectPadding/2;
-    		})
-    		.attr("y",function(d){
+      var xScale = d3.scaleBand()
+        .domain(d3.range(dataset.length))
+        .rangeRound([0,width-marge.left-marge.right]);
+      var xAxis = d3.axisBottom(xScale);
+        
+      var yScale = d3.scaleLinear()
+        .domain([0,d3.max(dataset)])
+        .range([height-marge.top-marge.bottom,0]);
+      var yAxis = d3.axisLeft(yScale);
+      
+      g.append("g")
+        .attr("transform","translate("+0+","+(height-marge.top-marge.bottom)+")")
+        .call(xAxis);
+      g.append("g")
+        .attr("transform","translate(0,0)")
+        .call(yAxis);
+        
+      //缁樺埗鐭╁舰鍜屾枃瀛�
+      var gs = g.selectAll(".rect")
+        .data(dataset)
+        .enter()
+        .append("g");
+      
+      //缁樺埗鐭╁舰
+      var rectPadding = 20;//鐭╁舰涔嬮棿鐨勯棿闅�
+      gs.append("rect")
+        .attr("x",function(d,i){
+          return xScale(i)+rectPadding/2;
+        })  
+        .attr("y",function(d){
+          return yScale(d);
+        })
+        .attr("width",function(){
+          return xScale.step()-rectPadding;
+        })
+        .attr("height",function(d){
+          return height-marge.top-marge.bottom-yScale(d);
+        })
+        .attr("fill","blue")
+        .on("mouseover",function(){
+          var rect = d3.select(this)
+            .transition()
+            .duration(1500)
+            .attr("fill","yellow");
+        })
+        .on("mouseout",function(){
+          var rect = d3.select(this)
+            .transition()
+            .delay(1500)
+            .duration(1500)
+            .attr("fill","blue");
+        })
+      //缁樺埗鏂囧瓧
+      gs.append("text")
+        .attr("x",function(d,i){
+          return xScale(i)+rectPadding/2;
+        })
+        .attr("y",function(d){
             return yScale(d);
-        	})
-        	.attr("dx",function(){
-        		(xScale.step()-rectPadding)/2;
-        	})
-        	.attr("dy",20)
-        	.text(function(d){
-        		return d;
-        	})
+          })
+          .attr("dx",function(){
+            (xScale.step()-rectPadding)/2;
+          })
+          .attr("dy",20)
+          .text(function(d){
+            return d;
+          })
     </script>
   </body>
 </html>

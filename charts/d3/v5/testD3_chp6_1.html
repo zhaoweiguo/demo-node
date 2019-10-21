@@ -4,11 +4,10 @@
     <title>testD3_chp6_1.html</title>
     
     <script type="text/javascript" src="http://d3js.org/d3.v5.min.js">
-	</script>
-	
+  </script>
+  
     <meta name="keywords" content="keyword1,keyword2,keyword3">
     <meta name="description" content="this is my page">
-    <meta name="content-type" content="text/html; charset=GBK">
     
     <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
 
@@ -17,27 +16,27 @@
   <body>
     <svg width="960" height="600"></svg>
     <script>
-    	var marge = {top:60,bottom:60,left:60,right:60}//ÉèÖÃ±ß¾à
-    	var dataset = [ 250 , 210 , 170 , 130 , 90 ];  //Êı¾İ£¨±íÊ¾¾ØĞÎµÄ¿í¶È£©
-    	var svg = d3.select("svg");//µÃµ½svg»­²¼
-    	var g = svg.append("g")//¶¨ÒåÒ»¸öÓÃÀ´×°Õû¸öÍ¼±íµÄÒ»¸ö·Ö×é£¬²¢ÉèÖÃËûµÄÎ»ÖÃ
-    		.attr("transform","translate("+marge.top+","+marge.left+")");
-    	
-    	var rectHeight = 30;//ÉèÖÃÃ¿Ò»¸ö¾ØĞÎµÄ¸ß¶È
-    	
-    	g.selectAll("rect")
-    		.data(dataset)
-    		.enter()
-    		.append("rect")
-    		.attr("x",20)//ÉèÖÃ×óÉÏµãµÄx
-    		.attr("y",function(d,i){//ÉèÖÃ×óÉÏµãµÄy
-    			return i*rectHeight;
-    		})
-    		.attr("width",function(d){//ÉèÖÃ¿í
-    			return d;
-    		})
-    		.attr("height",rectHeight-5)//ÉèÖÃ³¤
-    		.attr("fill","blue");//ÑÕÉ«Ìî³ä
+      var marge = {top:60,bottom:60,left:60,right:60}//è®¾ç½®è¾¹è·
+      var dataset = [ 250 , 210 , 170 , 130 , 90 ];  //æ•°æ®ï¼ˆè¡¨ç¤ºçŸ©å½¢çš„å®½åº¦ï¼‰
+      var svg = d3.select("svg");//å¾—åˆ°svgç”»å¸ƒ
+      var g = svg.append("g")//å®šä¹‰ä¸€ä¸ªç”¨æ¥è£…æ•´ä¸ªå›¾è¡¨çš„ä¸€ä¸ªåˆ†ç»„ï¼Œå¹¶è®¾ç½®ä»–çš„ä½ç½®
+        .attr("transform","translate("+marge.top+","+marge.left+")");
+      
+      var rectHeight = 30;//è®¾ç½®æ¯ä¸€ä¸ªçŸ©å½¢çš„é«˜åº¦
+      
+      g.selectAll("rect")
+        .data(dataset)
+        .enter()
+        .append("rect")
+        .attr("x",20)//è®¾ç½®å·¦ä¸Šç‚¹çš„x
+        .attr("y",function(d,i){//è®¾ç½®å·¦ä¸Šç‚¹çš„y
+          return i*rectHeight;
+        })
+        .attr("width",function(d){//è®¾ç½®å®½
+          return d;
+        })
+        .attr("height",rectHeight-5)//è®¾ç½®é•¿
+        .attr("fill","blue");//é¢œè‰²å¡«å……
     </script>
   </body>
 </html>

@@ -4,11 +4,10 @@
     <title>testD3_chp13_1.html</title>
     
     <script type="text/javascript" src="http://d3js.org/d3.v5.min.js">
-	</script>
-	
+  </script>
+  
     <meta name="keywords" content="keyword1,keyword2,keyword3">
     <meta name="description" content="this is my page">
-    <meta name="content-type" content="text/html; charset=GBK">
     
     <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
 
@@ -17,62 +16,62 @@
   <body>
     <svg width="960" height="600"></svg>
     <script>
-    	var marge = {top:60,bottom:60,left:60,right:60}
-    	var svg = d3.select("svg")
-    	var width = svg.attr("width")
-    	var height = svg.attr("height")
-    	var g = svg.append("g")
-    		.attr("transform","translate("+marge.top+","+marge.left+")");
-    		
-    	var dataset = [ 30 , 10 , 43 , 55 , 13 ];
-    	
-    	//ÉèÖÃÒ»¸öcolorµÄÑÕÉ«±ÈÀı³ß£¬ÎªÁËÈÃ²»Í¬µÄÉÈĞÎ³ÊÏÖ²»Í¬µÄÑÕÉ«
-    	var colorScale = d3.scaleOrdinal()
-    		.domain(d3.range(dataset.length))
-    		.range(d3.schemeCategory10);
-    	
-    	//ĞÂ½¨Ò»¸ö±ı×´Í¼
-    	var pie = d3.pie();
-    	
-    	//ĞÂ½¨Ò»¸ö»¡ĞÎÉú³ÉÆ÷
-    	var innerRadius = 0;//ÄÚ°ë¾¶
-    	var outerRadius = 100;//Íâ°ë¾¶
-    	var arc_generator = d3.arc()
-    		.innerRadius(0)
-    		.outerRadius(100);
-    		
-    	//½«Ô­Ê¼Êı¾İ±ä³É¿ÉÒÔ»æÖÆ±ı×´Í¼µÄÊı¾İ£¬
-    	var pieData = pie(dataset);
-    	
-    	//ÔÚä¯ÀÀÆ÷µÄ¿ØÖÆÌ¨´òÓ¡pieData
-    	console.log(pieData);
-    	
-    	//ÔÚÓĞÁË»æÖÆ±ı×´Í¼±ØĞëµÄÊı¾İºó£¬ÎÒÃÇ¾Í¿ÉÒÔ¿ªÊ¼»æÖÆÁË
-    	var gs = g.selectAll(".g")
-    		.data(pieData)
-    		.enter()
-    		.append("g")
-    		.attr("transform","translate("+width/2+","+height/2+")")//Î»ÖÃĞÅÏ¢
-    		
-    	//»æÖÆ±ı×´Í¼µÄ¸÷¸öÉÈĞÎ
-    	gs.append("path")
-    		.attr("d",function(d){
-    			return arc_generator(d);//Íù»¡ĞÎÉú³ÉÆ÷ÖĞ³öÈëÊı¾İ
-    		})
-    		.attr("fill",function(d,i){
-    			return colorScale(i);
-    		});
-    		
-    	//»æÖÆ±ı×´Í¼ÉÏÃæµÄÎÄ×ÖĞÅÏ¢
-    	gs.append("text")
-    		.attr("transform",function(d){//Î»ÖÃÉèÔÚÖĞĞÄ´¦
-    			return "translate("+arc_generator.centroid(d)+")";
-    		})
-    		.attr("text-anchor","middle")
-    		.text(function(d){
-    			return d.data;
-    		})
-    	
+      var marge = {top:60,bottom:60,left:60,right:60}
+      var svg = d3.select("svg")
+      var width = svg.attr("width")
+      var height = svg.attr("height")
+      var g = svg.append("g")
+        .attr("transform","translate("+marge.top+","+marge.left+")");
+        
+      var dataset = [ 30 , 10 , 43 , 55 , 13 ];
+      
+      //è®¾ç½®ä¸€ä¸ªcolorçš„é¢œè‰²æ¯”ä¾‹å°ºï¼Œä¸ºäº†è®©ä¸åŒçš„æ‰‡å½¢å‘ˆç°ä¸åŒçš„é¢œè‰²
+      var colorScale = d3.scaleOrdinal()
+        .domain(d3.range(dataset.length))
+        .range(d3.schemeCategory10);
+      
+      //æ–°å»ºä¸€ä¸ªé¥¼çŠ¶å›¾
+      var pie = d3.pie();
+      
+      //æ–°å»ºä¸€ä¸ªå¼§å½¢ç”Ÿæˆå™¨
+      var innerRadius = 0;//å†…åŠå¾„
+      var outerRadius = 100;//å¤–åŠå¾„
+      var arc_generator = d3.arc()
+        .innerRadius(0)
+        .outerRadius(100);
+        
+      //å°†åŸå§‹æ•°æ®å˜æˆå¯ä»¥ç»˜åˆ¶é¥¼çŠ¶å›¾çš„æ•°æ®ï¼Œ
+      var pieData = pie(dataset);
+      
+      //åœ¨æµè§ˆå™¨çš„æ§åˆ¶å°æ‰“å°pieData
+      console.log(pieData);
+      
+      //åœ¨æœ‰äº†ç»˜åˆ¶é¥¼çŠ¶å›¾å¿…é¡»çš„æ•°æ®åï¼Œæˆ‘ä»¬å°±å¯ä»¥å¼€å§‹ç»˜åˆ¶äº†
+      var gs = g.selectAll(".g")
+        .data(pieData)
+        .enter()
+        .append("g")
+        .attr("transform","translate("+width/2+","+height/2+")")//ä½ç½®ä¿¡æ¯
+        
+      //ç»˜åˆ¶é¥¼çŠ¶å›¾çš„å„ä¸ªæ‰‡å½¢
+      gs.append("path")
+        .attr("d",function(d){
+          return arc_generator(d);//å¾€å¼§å½¢ç”Ÿæˆå™¨ä¸­å‡ºå…¥æ•°æ®
+        })
+        .attr("fill",function(d,i){
+          return colorScale(i);
+        });
+        
+      //ç»˜åˆ¶é¥¼çŠ¶å›¾ä¸Šé¢çš„æ–‡å­—ä¿¡æ¯
+      gs.append("text")
+        .attr("transform",function(d){//ä½ç½®è®¾åœ¨ä¸­å¿ƒå¤„
+          return "translate("+arc_generator.centroid(d)+")";
+        })
+        .attr("text-anchor","middle")
+        .text(function(d){
+          return d.data;
+        })
+      
     </script>
   </body>
 </html>

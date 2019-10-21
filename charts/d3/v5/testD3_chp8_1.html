@@ -4,11 +4,10 @@
     <title>testD3_chp8_1.html</title>
     
     <script type="text/javascript" src="http://d3js.org/d3.v5.min.js">
-	</script>
-	
+  </script>
+  
     <meta name="keywords" content="keyword1,keyword2,keyword3">
     <meta name="description" content="this is my page">
-    <meta name="content-type" content="text/html; charset=GBK">
     
     <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
 
@@ -17,43 +16,43 @@
   <body>
     <svg width="960" height="600"></svg>
     <script>
-    	var marge = {top:60,bottom:60,left:60,right:60}
-    	var dataset = [ 2.5 , 2.1 , 1.7 , 1.3 , 0.9 ];  
-    	
-    	var scaleLinear = d3.scaleLinear()
-    		.domain([0,d3.max(dataset)])
-    		.range([0,250]);
-    		
-    	var svg = d3.select("svg");
-    	var g = svg.append("g")
-    		.attr("transform","translate("+marge.top+","+marge.left+")");
-    	
-    	var rectHeight = 30;
-    	
-    	g.selectAll("rect")
-    		.data(dataset)
-    		.enter()
-    		.append("rect")
-    		.attr("x",20)
-    		.attr("y",function(d,i){
-    			return i*rectHeight;
-    		})
-    		.attr("width",function(d){
-    			return scaleLinear(d);
-    		})
-    		.attr("height",rectHeight-5)
-    		.attr("fill","blue");
-    		
-    	//Îª×ø±êÖá¶¨ÒåÒ»¸öÏßĞÔ±ÈÀı³ß
-    	var xScale = d3.scaleLinear()
-    		.domain([0,d3.max(dataset)])
-    		.range([0,250]);
-    	//¶¨ÒåÒ»¸ö×ø±êÖá
-    	var xAxis = d3.axisBottom(xScale)//¶¨ÒåÒ»¸öaxis£¬ÓÉbottom¿ÉÖª£¬ÊÇ³¯ÏÂµÄ
-    		.ticks(7);//ÉèÖÃ¿Ì¶ÈÊıÄ¿
-    	g.append("g")
-    		.attr("transform","translate("+20+","+(dataset.length*rectHeight)+")")
-    		.call(xAxis);
+      var marge = {top:60,bottom:60,left:60,right:60}
+      var dataset = [ 2.5 , 2.1 , 1.7 , 1.3 , 0.9 ];  
+      
+      var scaleLinear = d3.scaleLinear()
+        .domain([0,d3.max(dataset)])
+        .range([0,250]);
+        
+      var svg = d3.select("svg");
+      var g = svg.append("g")
+        .attr("transform","translate("+marge.top+","+marge.left+")");
+      
+      var rectHeight = 30;
+      
+      g.selectAll("rect")
+        .data(dataset)
+        .enter()
+        .append("rect")
+        .attr("x",20)
+        .attr("y",function(d,i){
+          return i*rectHeight;
+        })
+        .attr("width",function(d){
+          return scaleLinear(d);
+        })
+        .attr("height",rectHeight-5)
+        .attr("fill","blue");
+        
+      //ä¸ºåæ ‡è½´å®šä¹‰ä¸€ä¸ªçº¿æ€§æ¯”ä¾‹å°º
+      var xScale = d3.scaleLinear()
+        .domain([0,d3.max(dataset)])
+        .range([0,250]);
+      //å®šä¹‰ä¸€ä¸ªåæ ‡è½´
+      var xAxis = d3.axisBottom(xScale)//å®šä¹‰ä¸€ä¸ªaxisï¼Œç”±bottomå¯çŸ¥ï¼Œæ˜¯æœä¸‹çš„
+        .ticks(7);//è®¾ç½®åˆ»åº¦æ•°ç›®
+      g.append("g")
+        .attr("transform","translate("+20+","+(dataset.length*rectHeight)+")")
+        .call(xAxis);
     </script>
   </body>
 </html>
