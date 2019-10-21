@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>testD3_chp07_1.html</title>
+    
+    <script type="text/javascript" src="http://d3js.org/d3.v5.min.js">
+  </script>
+  
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  <body>
+    <script>
+      var dataset = [1.2, 2.3, 0.9, 1.5, 3.3];
+      var min = d3.min(dataset);//得到最小值
+      var max = d3.max(dataset);//得到最大值
+      var scaleLinear = d3.scaleLinear()
+        .domain([min,max])  // 从0.9到3.3
+        .range([0,300]);    // 对比0到300
+      /*
+      算法: 
+        1. 实际长: 3.3-0.9=2.4
+        2. 1长度为: 300/2.4=125
+        3. 所以:
+          1对应(1.0-0.9)*125=12.5
+          2对应(2.0-0.9)*125=137.5
+          3.3对应300
+      */
+      document.write("scaleLinear(1)输出："+scaleLinear(1)); // 12.499999999999996
+      d3.select("body").append("br");//换行
+      document.write("scaleLinear(2)输出："+scaleLinear(2)); // 137.5
+      d3.select("body").append("br");
+      document.write("scaleLinear(3.3)输出："+scaleLinear(3.3)); // 300
+    </script>
+  </body>
+</html>
