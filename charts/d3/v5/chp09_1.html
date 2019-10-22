@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>testD3_chp9_1.html</title>
+    <title>完整的柱状图</title>
   
   <script type="text/javascript" src="http://d3js.org/d3.v5.min.js">
   </script>
@@ -26,7 +26,7 @@
       var dataset = [10,20,30,23,13,40,27,35,20];
    
       var xScale = d3.scaleBand()
-        .domain(d3.range(dataset.length))
+        .domain(d3.range(dataset.length))  // d3.range(dataset.length)，这里返回的是一个等差数列
         .rangeRound([0,width-marge.left-marge.right]);
       var xAxis = d3.axisBottom(xScale);
         

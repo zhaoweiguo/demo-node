@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>testD3_chp10_1.html</title>
+    <title>让图表动起来</title>
     
     <script type="text/javascript" src="http://d3js.org/d3.v5.min.js">
   </script>
@@ -71,7 +71,7 @@
         .delay(function(d,i){
           return i*400;
         })
-        //.ease(d3.easeElasticInOut)
+        .ease(d3.easeElasticInOut)  // 过滤方式,注释则使用默认过滤方式
         .attr("y",function(d){
           return yScale(d);
         })
@@ -87,21 +87,21 @@
         .attr("y",function(d){
               var min = yScale.domain()[0];
           return yScale(min);
-          })
-          .attr("dx",function(){
-            (xScale.step()-rectPadding)/2;
-          })
-          .attr("dy",20)
-          .text(function(d){
-            return d;
-          })
-          .transition()
+        })
+        .attr("dx",function(){
+          (xScale.step()-rectPadding)/2;
+        })
+        .attr("dy",20)
+        .text(function(d){
+          return d;
+        })
+        .transition()
         .duration(2000)
         .delay(function(d,i){
           return i*400;
         })
-        //.ease(d3.easeElasticInOut)
-          .attr("y",function(d){
+        //.ease(d3.easeElasticInOut)  // 过滤方式,注释则使用默认过滤方式
+        .attr("y",function(d){
           return yScale(d);
         });
     </script>

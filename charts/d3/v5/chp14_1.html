@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>testD3_chp14_1.html</title>
+    <title>力导向图</title>
     
     <script type="text/javascript" src="http://d3js.org/d3.v5.min.js"></script>
   
@@ -73,12 +73,11 @@
       forceSimulation.force("center")
         .x(width/2)
         .y(height/2);
-      //在浏览器的控制台输出
+      //打印结点与关系
       console.log(nodes);
       console.log(edges);
       
-      //有了节点和边的数据后，我们开始绘制
-      //绘制边
+      //有了节点和边的数据后，我们开始绘制边
       var links = g.append("g")
         .selectAll("line")
         .data(edges)
@@ -138,14 +137,15 @@
           
         linksText
           .attr("x",function(d){
-          return (d.source.x+d.target.x)/2;
-        })
-        .attr("y",function(d){
-          return (d.source.y+d.target.y)/2;
-        });
+            return (d.source.x+d.target.x)/2;
+          })
+          .attr("y",function(d){
+            return (d.source.y+d.target.y)/2;
+          });
           
-        gs
-          .attr("transform",function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+        gs.attr("transform",function(d) { 
+          return "translate(" + d.x + "," + d.y + ")"; 
+        });
       }
       function started(d){
         if(!d3.event.active){

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>testD3_chp13_1.html</title>
+    <title>饼状图</title>
     
     <script type="text/javascript" src="http://d3js.org/d3.v5.min.js">
   </script>
@@ -34,16 +34,25 @@
       var pie = d3.pie();
       
       //新建一个弧形生成器
-      var innerRadius = 0;//内半径
+      var innerRadius = 30;//内半径
       var outerRadius = 100;//外半径
       var arc_generator = d3.arc()
-        .innerRadius(0)
-        .outerRadius(100);
+        .innerRadius(innerRadius)
+        .outerRadius(outerRadius);
         
       //将原始数据变成可以绘制饼状图的数据，
       var pieData = pie(dataset);
       
       //在浏览器的控制台打印pieData
+      /*
+      [
+        {data: 30,index: 2,padAngle: 0,value: 30,startAngle: 4.077,endAngle: 5.326},
+        {data: 10,index: 4,padAngle: 0,value: 10,startAngle: 5.867,endAngle: 6.283},
+        {data: 43,index: 1,padAngle: 0,value: 43,startAngle: 2.288,endAngle: 4.077},
+        {data: 55,index: 0,padAngle: 0,value: 55,startAngle: 0.000,endAngle: 2.288},
+        {data: 13,index: 3,padAngle: 0,value: 13,startAngle: 5.326,endAngle: 5.867}
+      ]
+      */
       console.log(pieData);
       
       //在有了绘制饼状图必须的数据后，我们就可以开始绘制了
@@ -56,7 +65,7 @@
       //绘制饼状图的各个扇形
       gs.append("path")
         .attr("d",function(d){
-          return arc_generator(d);//往弧形生成器中出入数据
+          return arc_generator(d); //往弧形生成器中出入数据
         })
         .attr("fill",function(d,i){
           return colorScale(i);
