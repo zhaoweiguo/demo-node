@@ -1,0 +1,23 @@
+<html>
+<head>
+<script>
+function draw24(id) {
+    var canvas = document.getElementById(id);
+    if (canvas == null) {
+        return false;
+    }
+    var context = canvas.getContext("2d"); //获取convas 2d对象，其中封装了很多绘图方法（现在canvas只有2D对象可以调用）
+
+    context.moveTo(50, 50); //移动绘图中心点
+    context.bezierCurveTo(50, 50,150, 50, 150, 150); //绘制贝塞尔曲线
+    context.stroke(); //绘制边框
+    context.quadraticCurveTo(150, 250, 250, 250); //绘制2次样条曲线
+    context.stroke(); //绘制边框
+}
+draw24("id");
+</script>
+</head>
+<body>
+<canvas id="id"></canvas>
+</body>
+</html>

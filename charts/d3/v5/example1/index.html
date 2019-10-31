@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+  body {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    background: white;
+  }
+
+  canvas {
+    margin: 0 230px;
+  }
+</style>
+<body>
+
+<canvas width="500" height="500"></canvas>
+
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="d3-force-sampled.js"></script>
+<script>
+
+var radius = 1;
+var tick = 300;
+
+var canvas = document.querySelector('canvas');
+var context = canvas.getContext('2d');
+
+var width = canvas.width;
+var height = canvas.height;
+
+var scale = d3.scaleLinear()
+  .range([radius, width - radius])
+  .domain([-3200, 3200]);
+
+var forceSim = d3.forceSimulation()
+  .velocityDecay(0.2)
+  .alphaDecay(0)
+  .force('link', d3.forceLink())
+  .force('charge', d3.forceManyBodySampled())
+  .force('center', d3.forceCenter(width/2, height/2));
+
+d3.json('dwt_1005.json').then(function(graph) {
+  forceSim.nodes(graph.nodes)
+    .on('tick', function () {
+      drawNetwork(graph);
+      if (--tick < 0) forceSim.stop();
+    });
+
+  forceSim.force('link')
+    .links(graph.links);
+});
+
+function drawNetwork (graph) {
+  context.clearRect(0, 0, width, height);
+  context.fillStyle = '#ffffff';
+  context.fillRect(0, 0, width, height);
+
+  // Draw links.
+  context.strokeStyle = 'rgba(90, 90, 90, 0.30)';
+  context.lineWidth = 1;
+  graph.links.forEach(function(d) {
+    context.beginPath();
+    var pos = [scale(d.source.x), scale(d.source.y)];
+    context.moveTo(pos[0], pos[1]);
+    pos = [scale(d.target.x), scale(d.target.y)];
+    context.lineTo(pos[0], pos[1]);
+    context.stroke();
+  });
+
+  // Draw nodes.
+  context.fillStyle = '#d30000';
+  context.beginPath();
+  graph.nodes.forEach(function(d) {
+    var pos = [scale(d.x), scale(d.y)];
+    context.moveTo(pos[0], pos[1]);
+    context.arc(pos[0], pos[1], radius, 0, 2 * Math.PI);
+  });
+  context.fill();
+}
+
+</script>
